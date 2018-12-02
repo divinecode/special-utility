@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="289.0" prefWidth="301.0" styleClass="transparent" stylesheets="@App.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.divinecode.specialutility.gui.MainController">
+   <children>
+      <Pane layoutX="16.0" layoutY="256.0" prefHeight="33.0" prefWidth="270.0" styleClass="author">
+         <children>
+            <Text fill="WHITE" layoutX="61.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEVELOPED BY DEMKOM58" />
+         </children></Pane>
+      <Pane layoutX="16.0" prefHeight="33.0" prefWidth="270.0" styleClass="header">
+         <children>
+            <Text fill="WHITE" layoutX="92.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SPECIAL UTILITY" />
+            <Button fx:id="close" layoutX="237.0" mnemonicParsing="false" onMouseClicked="#onClose" prefHeight="33.0" prefWidth="33.0" styleClass="close-button" text="х" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="info" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onInfo" prefHeight="33.0" prefWidth="33.0" styleClass="info-button" text="?" textFill="WHITE" />
+         </children>
+      </Pane>
+      <AnchorPane layoutY="33.0" prefHeight="223.0" prefWidth="301.0" styleClass="body">
+         <children>
+            <Button fx:id="transform" layoutX="114.0" layoutY="185.0" mnemonicParsing="false" onMouseClicked="#onTransform" text="Transform" textAlignment="CENTER" textFill="WHITE" />
+            <TextField fx:id="inputJar" layoutX="5.0" layoutY="32.0" prefHeight="27.0" prefWidth="260.0" promptText="Path to input jar" styleClass="input" />
+            <TextField fx:id="outputJar" layoutX="6.0" layoutY="90.0" prefHeight="27.0" prefWidth="260.0" promptText="Path to output directory" styleClass="input" />
+            <TextField fx:id="specified" layoutX="5.0" layoutY="150.0" prefHeight="27.0" prefWidth="290.0" promptText="Ex: &quot;a.b.c; a.c.b;&quot;. Empty - transform all packages" styleClass="input" />
+            <Text fill="WHITE" layoutX="6.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transform only packages" />
+            <Text fill="WHITE" layoutX="6.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Output jar file" />
+            <Text fill="WHITE" layoutX="6.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input jar file" />
+            <Button fx:id="selectInputJar" layoutX="269.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onInputJarSelect" prefHeight="25.0" prefWidth="26.0" styleClass="input" text="..." />
+            <Button fx:id="selectOutputJar" layoutX="269.0" layoutY="91.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onOutputJarSelect" prefHeight="25.0" prefWidth="26.0" styleClass="input" text="..." />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
