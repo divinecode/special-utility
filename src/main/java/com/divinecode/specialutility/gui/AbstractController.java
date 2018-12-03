@@ -10,6 +10,7 @@ public abstract class AbstractController {
     private FXMLLoader loader;
     private Scene scene;
     private AnchorPane pane;
+    private GuiManager guiManager;
 
     protected double xOffset;
     protected double yOffset;
@@ -45,6 +46,10 @@ public abstract class AbstractController {
         this.pane = pane;
     }
 
+    public void setGuiManager(GuiManager guiManager) {
+        this.guiManager = guiManager;
+    }
+
     public Scene getScene() {
         return scene;
     }
@@ -60,4 +65,9 @@ public abstract class AbstractController {
     public AnchorPane getPane() {
         return pane;
     }
+
+    public GuiManager getGuiManager() {
+        return guiManager;
+    }
+
 }

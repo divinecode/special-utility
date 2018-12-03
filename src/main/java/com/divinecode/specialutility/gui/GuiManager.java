@@ -12,9 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GuiManager {
-    private static Map<Class<? extends AbstractController>, Triple<AnchorPane, FXMLLoader, ? extends AbstractController>> scenes = new HashMap<>();
+    private Map<Class<? extends AbstractController>, Triple<AnchorPane, FXMLLoader, ? extends AbstractController>> scenes = new HashMap<>();
 
-    public static <T extends AbstractController> @NotNull Triple<AnchorPane, FXMLLoader, T> addScene(@NotNull final Class<T> controllerClass,
+    public <T extends AbstractController> @NotNull Triple<AnchorPane, FXMLLoader, T> addScene(@NotNull final Class<T> controllerClass,
                                                                                                   @NotNull final String path,
                                                                                                   @NotNull final Stage stage) throws Exception {
         final FXMLLoader loader = new FXMLLoader(Starter.class.getResource(path));
@@ -26,6 +26,7 @@ public class GuiManager {
         controller.setLoader(loader);
         controller.setStage(stage);
         controller.setPane(pane);
+        controller.setGuiManager(this);
 
         final Triple<AnchorPane, FXMLLoader, T> triple = new Triple<>(pane, loader, controller);
         scenes.put(controllerClass, triple);
@@ -35,11 +36,11 @@ public class GuiManager {
         return triple;
     }
 
-    public static @Nullable <T extends AbstractController> Triple<AnchorPane, FXMLLoader, T> getScene(Class<T> sceneClass) {
+    public @Nullable <T extends AbstractController> Triple<AnchorPane, FXMLLoader, T> getScene(Class<T> sceneClass) {
         return (Triple<AnchorPane, FXMLLoader, T>) scenes.get(sceneClass);
     }
 
-    public static @NotNull Map<Class<? extends AbstractController>, Triple<AnchorPane, FXMLLoader, ? extends AbstractController>> getScenes() {
+    public @NotNull Map<Class<? extends AbstractController>, Triple<AnchorPane, FXMLLoader, ? extends AbstractController>> getScenes() {
         return scenes;
     }
 

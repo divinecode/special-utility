@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ApplicationGui extends Application {
+    private GuiManager guiManager = new GuiManager();
     private Stage stage;
 
     @Override
@@ -15,7 +16,7 @@ public class ApplicationGui extends Application {
         this.stage = rootStage;
 
         final Triple<AnchorPane, FXMLLoader, MainController> main =
-                GuiManager.addScene(MainController.class, "/assets/gui/MainGui.fxml", rootStage);
+                guiManager.addScene(MainController.class, "/assets/gui/MainGui.fxml", rootStage);
 
         rootStage.setTitle("SpecialUtility");
         rootStage.initStyle(StageStyle.TRANSPARENT);
