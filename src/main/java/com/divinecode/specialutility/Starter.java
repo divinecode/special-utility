@@ -24,8 +24,10 @@ public class Starter {
             System.out.println(e.getMessage());
             printUsage(parser);
 
-            if (!options.noGui)
+            if (!options.noGui) {
                 ApplicationGui.main(args);
+                System.out.println(!options.noGui);
+            }
 
             return;
         }
@@ -35,7 +37,7 @@ public class Starter {
         if (!options.specified.isEmpty()) specified.addAll(Arrays.asList(options.specified
                 .replace('.', File.separatorChar).split(":")));
 
-        new SpecialUtility(options.input, options.output, specified);
+        new SpecialUtility(options.input, options.output, specified, options.removeFinals);
     }
 
     private static void printUsage(@NotNull final OptionsParser parser) {

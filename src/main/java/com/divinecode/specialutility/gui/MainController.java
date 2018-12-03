@@ -6,6 +6,7 @@ import com.divinecode.specialutility.options.SpecialUtilityOptions;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.DirectoryChooser;
@@ -32,6 +33,8 @@ public class MainController extends AbstractController {
 
     @FXML private Button selectInputJar;
     @FXML private Button selectOutputJar;
+
+    @FXML private CheckBox removeFinals;
 
     @FXML private Button transform;
 
@@ -61,6 +64,7 @@ public class MainController extends AbstractController {
         options.output = outputJar.getText();
         options.specified = specified.getText();
         options.noGui = true;
+        options.removeFinals = removeFinals.isSelected();
 
         OptionsValidator validator = new OptionsValidator();
         validator.validate(options);
@@ -69,7 +73,7 @@ public class MainController extends AbstractController {
 
         new Thread(() -> {
             transform.setDisable(true);
-            new SpecialUtility(options.input, options.output, spec);
+            new SpecialUtility(options.input, options.output, spec, options.removeFinals);
             transform.setDisable(false);
         }).start();
     }

@@ -44,4 +44,14 @@ public class SpecialUtilityOptions extends OptionsBase implements Cloneable {
     )
     public boolean noGui;
 
+    @Option(
+            name = "finals",
+            abbrev = 'f',
+            help = "Remove finals from methods, classes and variables.",
+            category = "general",
+            defaultValue = "false"
+    )
+    public boolean removeFinals;
+
+
 }

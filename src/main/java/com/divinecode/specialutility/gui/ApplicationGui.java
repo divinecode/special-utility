@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ApplicationGui extends Application {
-    private GuiManager guiManager = new GuiManager();
+    private final GuiManager guiManager = new GuiManager();
     private Stage stage;
 
     @Override

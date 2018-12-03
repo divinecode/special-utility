@@ -31,15 +31,10 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Agent-Class>com.divinecode.specialutility.InstrumentationHook</Agent-Class>
-                            <Premain-class>com.divinecode.specialutility.InstrumentationHook</Premain-class>
-                            <Can-Redefine-Classes>true</Can-Redefine-Classes>
-                            <Can-Retransform-Classes>true</Can-Retransform-Classes>
-                            <Can-Set-Native-Method-Prefix>true</Can-Set-Native-Method-Prefix>
                             <Built-By>DEMKOM58</Built-By>
                         </manifestEntries>
                         <manifest>
-                            <mainClass>com.divinecode.specialutility.SpecialUtility</mainClass>
+                            <mainClass>com.divinecode.specialutility.Starter</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

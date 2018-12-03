@@ -8,10 +8,13 @@ import java.io.IOException;
 import java.util.Set;
 
 public class SpecialUtility {
-    private final @NotNull JavaTransformer transformer = new JavaTransformer();
+    private final @NotNull JavaTransformer transformer = new JavaTransformer(this);
+    private final boolean removeFinals;
     private SpecialData data;
 
-    public SpecialUtility(@NotNull final String input, @NotNull final String output, @NotNull final Set<String> specified) {
+    public SpecialUtility(@NotNull final String input, @NotNull final String output, @NotNull final Set<String> specified, final boolean removeFinals) {
+        this.removeFinals = removeFinals;
+
         try {
             final File inputFile = new File(input);
             final File outputFile = new File(output);
@@ -32,6 +35,18 @@ public class SpecialUtility {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public JavaTransformer getTransformer() {
+        return transformer;
+    }
+
+    public SpecialData getData() {
+        return data;
+    }
+
+    public boolean isRemoveFinals() {
+        return removeFinals;
     }
 
 }

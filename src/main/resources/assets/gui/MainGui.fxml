@@ -32,6 +32,7 @@
             <Text fill="WHITE" layoutX="6.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input jar file" />
             <Button fx:id="selectInputJar" layoutX="269.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onInputJarSelect" prefHeight="25.0" prefWidth="26.0" styleClass="input" text="..." />
             <Button fx:id="selectOutputJar" layoutX="269.0" layoutY="91.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onOutputJarSelect" prefHeight="25.0" prefWidth="26.0" styleClass="input" text="..." />
+            <CheckBox fx:id="removeFinals" layoutX="7.0" layoutY="190.0" mnemonicParsing="false" text="Remove finals?" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

@@ -9,9 +9,11 @@ import java.io.IOException;
 import java.util.Collection;
 
 public class JavaTransformer {
+    private final @NotNull SpecialUtility utility;
     private final @NotNull ClassWorker worker;
 
-    public JavaTransformer() {
+    public JavaTransformer(@NotNull final SpecialUtility utility) {
+        this.utility = utility;
         this.worker = new ClassWorker();
     }
 
@@ -51,7 +53,7 @@ public class JavaTransformer {
 
         System.out.println("Transforming " + target.getFile().getName());
 
-        final AccessAdapter adapter = new AccessAdapter(worker.writer);
+        final AccessAdapter adapter = new AccessAdapter(worker.writer, utility.isRemoveFinals());
         worker.reader.accept(adapter, 0);
 
         return worker.writer.toByteArray();
