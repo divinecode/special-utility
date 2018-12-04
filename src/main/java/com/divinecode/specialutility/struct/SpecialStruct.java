@@ -1,5 +1,6 @@
 package com.divinecode.specialutility.struct;
 
+import com.divinecode.specialutility.SpecialUtility;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -12,13 +13,13 @@ public class SpecialStruct {
     private final @NotNull File file;
     private @Nullable Set<SpecialClass> classes;
     private @Nullable Set<SpecialStruct> structs;
-    private @NotNull Set<String> specified;
+    private @NotNull SpecialUtility utility;
 
-    public SpecialStruct(@NotNull final File file, @NotNull final Set<String> specified) {
+    public SpecialStruct(@NotNull final SpecialUtility utility, @NotNull final File file) {
         System.out.println("Forming " + file.getAbsolutePath());
 
+        this.utility = utility;
         this.file = file;
-        this.specified = specified;
 
         this.classes = loadClasses();
         this.structs = loadStructs();
@@ -26,10 +27,12 @@ public class SpecialStruct {
 
     private @Nullable Set<SpecialClass> loadClasses() {
         final Set<SpecialClass> classes = new HashSet<>();
+        File[] files = file.listFiles();
+        if (files == null) return null;
 
-        for (File content : file.listFiles()) {
+        for (File content : files) {
             if (!content.getName().endsWith(".class")) continue;
-            classes.add(new SpecialClass(content, specified));
+            classes.add(new SpecialClass(utility, content));
         }
 
         if (classes.isEmpty()) return null;
@@ -58,10 +61,10 @@ public class SpecialStruct {
         if (files.length == 1 && files[0].isDirectory())
             return parseStruct(files[0]);
 
-        return new SpecialStruct(file, specified);
+        return new SpecialStruct(utility, file);
     }
 
-    public File getFile() {
+    public @NotNull File getFile() {
         return file;
     }
 

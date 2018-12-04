@@ -6,8 +6,10 @@ import com.divinecode.specialutility.options.SpecialUtilityOptions;
 import com.google.devtools.common.options.OptionsParser;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.util.*;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Set;
 
 public class Starter {
 
@@ -32,12 +34,12 @@ public class Starter {
             return;
         }
 
-        final Set<String> specified = new HashSet<>();
-
-        if (!options.specified.isEmpty()) specified.addAll(Arrays.asList(options.specified
-                .replace('.', File.separatorChar).split(";")));
-
-        new SpecialUtility(options.input, options.output, specified, options.removeFinals);
+        try {
+            final Set<String[]> specified = SpecialUtility.parsePackages(options.specified);
+            new SpecialUtility(options.input, options.output, specified, options.removeFinals);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void printUsage(@NotNull final OptionsParser parser) {

@@ -18,8 +18,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -69,12 +67,17 @@ public class MainController extends AbstractController {
         OptionsValidator validator = new OptionsValidator();
         validator.validate(options);
 
-        Set<String> spec = new HashSet<>(Arrays.asList(options.specified.split(";")));
+        Set<String[]> spec = SpecialUtility.parsePackages(options.specified);
 
         new Thread(() -> {
-            transform.setDisable(true);
-            new SpecialUtility(options.input, options.output, spec, options.removeFinals);
-            transform.setDisable(false);
+            try {
+                transform.setDisable(true);
+                new SpecialUtility(options.input, options.output, spec, options.removeFinals);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                transform.setDisable(false);
+            }
         }).start();
     }
 
@@ -103,7 +106,7 @@ public class MainController extends AbstractController {
             String[] split = inputJar.getText().split(Pattern.quote(File.separator));
             String jarFileName = split[split.length - 1];
 
-            jarFileName = jarFileName.substring(0, jarFileName.length() - 5) + " - Output.jar";
+            jarFileName = jarFileName.substring(0, jarFileName.length() - 4) + " - Output.jar";
 
             split[split.length-1] = jarFileName;
             outputJar.setText(String.join(File.separator, split));

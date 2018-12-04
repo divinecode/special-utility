@@ -1,6 +1,7 @@
 package com.divinecode.specialutility.struct;
 
 import com.divinecode.specialutility.FileUtils;
+import com.divinecode.specialutility.SpecialUtility;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -8,17 +9,16 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
-import java.util.Set;
 
 public class SpecialData {
+    private final  @NotNull SpecialUtility utility;
     private final @NotNull File jarFile;
-    private final  @NotNull Set<String> specified;
     private SpecialStruct struct;
     private File unzippedFolder;
 
-    public SpecialData(@NotNull final File jarFile, @NotNull final Set<String> specified) {
+    public SpecialData(@NotNull final SpecialUtility utility, @NotNull final File jarFile) {
+        this.utility = utility;
         this.jarFile = jarFile;
-        this.specified = specified;
     }
 
     public void setup() throws IOException {
@@ -27,7 +27,7 @@ public class SpecialData {
         FileUtils.unzip(jarFile, unzippedFolder);
 
         System.out.println("Generates inner file system...");
-        this.struct = new SpecialStruct(unzippedFolder, specified);
+        this.struct = new SpecialStruct(utility, unzippedFolder);
     }
 
     public void removeUnzipped() throws IOException {
