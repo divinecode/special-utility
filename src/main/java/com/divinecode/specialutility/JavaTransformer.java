@@ -53,7 +53,7 @@ public class JavaTransformer {
 
         System.out.println("Transforming " + target.getFile().getName());
 
-        final AccessAdapter adapter = new AccessAdapter(worker.writer, utility.isRemoveFinals());
+        final AccessAdapter adapter = new AccessAdapter(worker.writer, target.isRemoveFinals());
         worker.reader.accept(adapter, 0);
 
         return worker.writer.toByteArray();

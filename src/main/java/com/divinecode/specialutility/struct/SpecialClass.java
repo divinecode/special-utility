@@ -12,6 +12,7 @@ public class SpecialClass {
     private final @NotNull File file;
     private final @NotNull String[] pack;
     private boolean mustBeTransformed;
+    private boolean removeFinals;
 
     public SpecialClass(@NotNull final SpecialUtility utility, @NotNull final File file) {
         this.utility = utility;
@@ -19,7 +20,7 @@ public class SpecialClass {
         this.pack = file.getAbsolutePath()
                 .substring(utility.getData().getUnzippedFolder().getAbsolutePath().length() + 1)
                 .split(Pattern.quote(File.separator));
-
+        this.removeFinals = utility.isRemoveFinals() && !file.getName().contains("$");
         this.mustBeTransformed = isSpecifiedContentPath();
     }
 
@@ -57,6 +58,14 @@ public class SpecialClass {
 
     public void setMustBeTransformed(boolean mustBeTransformed) {
         this.mustBeTransformed = mustBeTransformed;
+    }
+
+    public boolean isRemoveFinals() {
+        return removeFinals;
+    }
+
+    public void setRemoveFinals(boolean removeFinals) {
+        this.removeFinals = removeFinals;
     }
 
 }
