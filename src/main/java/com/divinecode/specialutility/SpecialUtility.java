@@ -57,6 +57,9 @@ public class SpecialUtility {
     }
 
     public static @NotNull Set<String[]> parsePackages(@NotNull final String packages) {
+        if (packages.trim().isEmpty())
+            return new HashSet<>();
+
         final Set<String[]> specified = new HashSet<>();
 
         Arrays.stream(packages.split(";"))

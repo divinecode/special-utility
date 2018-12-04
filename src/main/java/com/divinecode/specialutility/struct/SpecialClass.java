@@ -21,6 +21,8 @@ public class SpecialClass {
                 .substring(utility.getData().getUnzippedFolder().getAbsolutePath().length() + 1)
                 .split(Pattern.quote(File.separator));
         this.removeFinals = utility.isRemoveFinals() && !file.getName().contains("$");
+
+        System.out.println(file.getName() + " - " + isSpecifiedContentPath());
         this.mustBeTransformed = isSpecifiedContentPath();
     }
 
@@ -34,7 +36,6 @@ public class SpecialClass {
 
     public boolean isSpecifiedContentPath() {
         Set<String[]> specified = utility.getSpecified();
-
         if (specified.isEmpty()) return true;
 
         for (String[] specify : specified)
