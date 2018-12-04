@@ -35,7 +35,7 @@ public class Starter {
         final Set<String> specified = new HashSet<>();
 
         if (!options.specified.isEmpty()) specified.addAll(Arrays.asList(options.specified
-                .replace('.', File.separatorChar).split(":")));
+                .replace('.', File.separatorChar).split(";")));
 
         new SpecialUtility(options.input, options.output, specified, options.removeFinals);
     }
